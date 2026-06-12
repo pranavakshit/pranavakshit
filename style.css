@@ -1,0 +1,278 @@
+/* -------------------------------------------------------
+   style.css — pranavakshit.in
+   ------------------------------------------------------- */
+
+/* Custom properties */
+:root {
+  --bg:         #111111;
+  --bg-raised:  #1a1a1a;
+  --text:       #e8e8e8;
+  --muted:      #888888;
+  --border:     #2a2a2a;
+  --accent:     #e8e8e8;   /* links/interactive — same as text, underline does the work */
+
+  --font:       'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --max-w:      640px;
+  --nav-h:      56px;
+}
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family:      var(--font);
+  font-size:        1rem;
+  line-height:      1.7;
+  color:            var(--text);
+  background-color: var(--bg);
+  overflow-x:       hidden;
+}
+
+img, svg { display: block; max-width: 100%; }
+ul, ol   { list-style: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  padding: 0.4rem 0.8rem;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 0.85rem;
+  z-index: 9999;
+  border-radius: 4px;
+}
+.skip-link:focus { top: 1rem; }
+
+/* -------------------------------------------------------
+   Nav
+   ------------------------------------------------------- */
+header {
+  position:      fixed;
+  top:           0;
+  left:          0;
+  width:         100%;
+  height:        var(--nav-h);
+  z-index:       100;
+  border-bottom: 1px solid var(--border);
+  background:    rgba(17, 17, 17, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+nav {
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  max-width:       var(--max-w);
+  margin-inline:   auto;
+  padding-inline:  1.5rem;
+  height:          100%;
+}
+
+.wordmark {
+  font-size:   0.95rem;
+  font-weight: 500;
+  color:       var(--text);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+nav ul {
+  display: flex;
+  gap: 1.75rem;
+}
+
+nav ul a {
+  font-size:       0.875rem;
+  color:           var(--muted);
+  text-decoration: none;
+  transition:      color 150ms ease;
+}
+
+nav ul a:hover { color: var(--text); }
+
+/* -------------------------------------------------------
+   Layout
+   ------------------------------------------------------- */
+main {
+  max-width:    var(--max-w);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+section {
+  padding-block: 5rem;
+}
+
+/* -------------------------------------------------------
+   Hero
+   ------------------------------------------------------- */
+#hero {
+  padding-top: calc(var(--nav-h) + 5rem);
+  min-height:  100svh;
+  display:     flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h1 {
+  font-size:      clamp(2rem, 5vw, 2.75rem);
+  font-weight:    500;
+  letter-spacing: -0.03em;
+  line-height:    1.1;
+  color:          var(--text);
+  margin-bottom:  0.75rem;
+}
+
+.subtitle {
+  font-size:     0.95rem;
+  color:         var(--muted);
+  margin-bottom: 1.75rem;
+}
+
+.description {
+  font-size:     1rem;
+  color:         var(--muted);
+  line-height:   1.75;
+  max-width:     52ch;
+  margin-bottom: 2.5rem;
+}
+
+/* Inline arrow links */
+.links {
+  display: flex;
+  gap: 1.75rem;
+}
+
+.links a {
+  display:     inline-flex;
+  align-items: center;
+  gap:         0.3rem;
+  font-size:   0.9rem;
+  font-weight: 500;
+  color:       var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--border);
+  transition:  text-decoration-color 150ms ease, color 150ms ease;
+}
+
+.links a:hover {
+  text-decoration-color: var(--muted);
+}
+
+.links a svg {
+  width:  13px;
+  height: 13px;
+  opacity: 0.6;
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.links a:hover svg {
+  opacity: 1;
+  transform: translate(1px, -1px);
+}
+
+/* -------------------------------------------------------
+   About
+   ------------------------------------------------------- */
+#about {
+  border-top: 1px solid var(--border);
+}
+
+h2 {
+  font-size:      0.8rem;
+  font-weight:    500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color:          var(--muted);
+  margin-bottom:  2.5rem;
+}
+
+.about-body p {
+  font-size:     0.975rem;
+  color:         var(--muted);
+  line-height:   1.8;
+  margin-bottom: 1.25rem;
+  max-width:     58ch;
+}
+
+.about-body p:last-of-type {
+  margin-bottom: 2rem;
+}
+
+/* Interests — plain comma list */
+.interests {
+  display:   flex;
+  flex-wrap: wrap;
+  gap:       0.25rem 0;
+}
+
+.interests li {
+  font-size: 0.875rem;
+  color:     var(--muted);
+}
+
+/* Comma separator between items using CSS, no JS needed */
+.interests li:not(:last-child)::after {
+  content: ',\00a0';
+}
+
+/* -------------------------------------------------------
+   Footer
+   ------------------------------------------------------- */
+footer {
+  border-top:    1px solid var(--border);
+  padding-block: 2rem;
+}
+
+footer p {
+  max-width:      var(--max-w);
+  margin-inline:  auto;
+  padding-inline: 1.5rem;
+  font-size:      0.8rem;
+  color:          var(--muted);
+}
+
+/* -------------------------------------------------------
+   Fade-in on scroll
+   ------------------------------------------------------- */
+.fade-in {
+  opacity:    0;
+  transform:  translateY(12px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-in.visible {
+  opacity:   1;
+  transform: translateY(0);
+}
+
+/* -------------------------------------------------------
+   Responsive
+   ------------------------------------------------------- */
+@media (max-width: 480px) {
+  h1 { font-size: 1.85rem; }
+
+  .links { gap: 1.25rem; }
+}
