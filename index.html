@@ -31,9 +31,10 @@
 
   <header>
     <nav>
-      <a href="#" class="wordmark">Pranav Akshit</a>
+      <a href="#/" class="wordmark">Pranav Akshit</a>
       <ul>
-        <li><a href="#about">About</a></li>
+        <li><a href="#/about" id="nav-about">About</a></li>
+        <li><a href="#/projects" id="nav-projects">Projects</a></li>
         <li><a href="https://github.com/pranavakshit" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
       </ul>
     </nav>
@@ -41,64 +42,92 @@
 
   <main id="main">
 
-    <section id="hero">
-      <h1>Pranav Akshit</h1>
-      <p class="subtitle">Student&thinsp;·&thinsp;Technology Enthusiast&thinsp;·&thinsp;Photographer</p>
-      <p class="description">
-        Passionate about technology, Linux, self-hosting, photography,
-        and exploring how software and artificial intelligence can solve
-        real-world problems.
-      </p>
-      <div class="links">
-        <a href="https://github.com/pranavakshit" target="_blank" rel="noopener noreferrer" id="link-github">
-          GitHub
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M7 17L17 7M17 7H7M17 7v10" />
-          </svg>
-        </a>
-        <a href="https://instagram.com/cam.pranavakshit.in" target="_blank" rel="noopener noreferrer"
-          id="link-instagram">
-          Instagram
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M7 17L17 7M17 7H7M17 7v10" />
-          </svg>
-        </a>
-      </div>
-    </section>
+    <!-- HOME / ABOUT VIEW -->
+    <div id="view-home" class="route-view">
+      <section id="hero">
+        <h1>Pranav Akshit</h1>
+        <p class="subtitle">Student&thinsp;·&thinsp;Technology Enthusiast&thinsp;·&thinsp;Photographer</p>
+        <p class="description">
+          Passionate about technology, Linux, self-hosting, photography,
+          and exploring how software and artificial intelligence can solve
+          real-world problems.
+        </p>
+        <div class="links">
+          <a href="https://github.com/pranavakshit" target="_blank" rel="noopener noreferrer" id="link-github">
+            GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M7 17L17 7M17 7H7M17 7v10" />
+            </svg>
+          </a>
+          <a href="https://instagram.com/cam.pranavakshit.in" target="_blank" rel="noopener noreferrer"
+            id="link-instagram">
+            Instagram
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M7 17L17 7M17 7H7M17 7v10" />
+            </svg>
+          </a>
+        </div>
+      </section>
 
-    <section id="about">
-      <h2>About</h2>
-      <div class="about-body">
-        <p>
-          I'm a student from India with a genuine interest in how technology
-          works under the hood. My focus areas include Linux, open-source software,
-          and self-hosting — I run my own infrastructure and enjoy understanding
-          every layer of the stack I build on.
+      <section id="about">
+        <h2>About</h2>
+        <div class="about-body">
+          <p>
+            I'm a student from India with a genuine interest in how technology
+            works under the hood. My focus areas include Linux, open-source software,
+            and self-hosting — I run my own infrastructure and enjoy understanding
+            every layer of the stack I build on.
+          </p>
+          <p>
+            Alongside that, I spend time with a camera. Photography and technology
+            share a common thread for me: both reward patience, precision, and an
+            eye for detail.
+          </p>
+          <p>
+            I'm continuously learning — cloud infrastructure, artificial intelligence,
+            and whatever interesting problem I've stumbled onto recently.
+          </p>
+          <ul class="interests">
+            <li>Linux</li>
+            <li>Open Source</li>
+            <li>Self-Hosting</li>
+            <li>Photography</li>
+            <li>Cloud Infrastructure</li>
+            <li>Artificial Intelligence</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <!-- PROJECTS LIST VIEW -->
+    <div id="view-projects" class="route-view" style="display: none;">
+      <section id="projects-intro">
+        <h1>Projects</h1>
+        <p class="subtitle">Engineering Showcase</p>
+        <p class="description">
+          A selection of engineering projects representing my work across backend engineering, 
+          cloud infrastructure, Android development, artificial intelligence, geospatial systems, 
+          and desktop applications.
         </p>
-        <p>
-          Alongside that, I spend time with a camera. Photography and technology
-          share a common thread for me: both reward patience, precision, and an
-          eye for detail.
-        </p>
-        <p>
-          I'm continuously learning — cloud infrastructure, artificial intelligence,
-          and whatever interesting problem I've stumbled onto recently.
-        </p>
-        <ul class="interests">
-          <li>Linux</li>
-          <li>Open Source</li>
-          <li>Self-Hosting</li>
-          <li>Photography</li>
-          <li>Cloud Infrastructure</li>
-          <li>Artificial Intelligence</li>
-        </ul>
+      </section>
+      <div id="projects-list-container">
+        <!-- Rendered dynamically -->
+        <div class="loading-placeholder">Loading projects...</div>
       </div>
-    </section>
+    </div>
+
+    <!-- CASE STUDY VIEW -->
+    <div id="view-case-study" class="route-view" style="display: none;">
+      <div id="case-study-container">
+        <!-- Rendered dynamically -->
+        <div class="loading-placeholder">Loading case study...</div>
+      </div>
+    </div>
 
   </main>
 
   <footer>
-    <p>Pranav Akshit &copy; <span id="year"></span> </p>
+    <p>Pranav Akshit &copy; <span id="year"></span></p>
   </footer>
 
   <script src="script.js"></script>
