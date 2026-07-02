@@ -666,7 +666,7 @@ const PROJECTS_DATA = {
     },
     {
       "id": "offline-doc-assistant",
-      "name": "Offline AI Document Assistant",
+      "name": "Offline AI-Powered Document Assistant",
       "tagline": "Privacy-first offline AI system for enterprise document search and conversational intelligence.",
       "repo": "pranavakshit/offline-doc-assistant",
       "status": "Completed",
