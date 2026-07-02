@@ -87,7 +87,7 @@ async function getRepoMetadata(repoPath) {
     if (cached) {
       try {
         return JSON.parse(cached).meta;
-      } catch (e) {}
+      } catch (e) { }
     }
     return getFallbackMetadata(repoPath);
   }
@@ -216,7 +216,7 @@ async function renderProjectsList() {
 
     // Create chips
     const chipsHTML = project.technologies.map(tech => `<span class="tech-chip">${tech}</span>`).join('');
-    
+
     // Create highlights
     const highlightsHTML = project.highlights.map(hl => `<li>${hl}</li>`).join('');
 
@@ -307,7 +307,7 @@ async function renderCaseStudy(projectId) {
   // metaHTML handled below
   const study = project.case_study;
   const chipsHTML = project.technologies.map(t => `<span class="chip">${t}</span>`).join('');
-  
+
   let ioclNoteHTML = '';
   if (projectId === 'offline-doc-assistant') {
     ioclNoteHTML = `
@@ -369,19 +369,19 @@ async function renderCaseStudy(projectId) {
       <p style="color:var(--muted); font-size:0.95rem; line-height:1.6;">${d.description}</p>
     </div>
   `).join('');
-  
+
   const challengesHTML = study.challenges.map(c => `
     <div style="margin-bottom:1.5rem;">
       <h5 style="color:var(--text); margin-bottom:0.25rem;">${c.title}</h5>
       <p style="color:var(--muted); font-size:0.95rem; line-height:1.6;">${c.description}</p>
     </div>
   `).join('');
-  
+
   let timelineHTML = '';
   if (study.timeline && study.timeline.length > 0) {
     timelineHTML = study.timeline.map(t => `<li style="margin-bottom:0.5rem;"><span style="color:var(--muted);margin-right:0.5rem;">•</span>${t}</li>`).join('');
   }
-  
+
   const roadmapHTML = study.roadmap.map(r => `<li style="margin-bottom:0.5rem;"><span style="color:var(--muted);margin-right:0.5rem;">•</span>${r}</li>`).join('');
 
   container.innerHTML = `
@@ -483,7 +483,7 @@ async function renderCaseStudy(projectId) {
       }
     });
   });
-  
+
   bindSidebarNavHighlight();
   observeFadeIn();
 }
@@ -527,11 +527,11 @@ async function initPage() {
   if (path === '/' || path.includes('index')) {
     document.getElementById('nav-about')?.classList.add('active-nav');
     observeFadeIn();
-  } 
+  }
   else if (path.includes('projects')) {
     document.getElementById('nav-projects')?.classList.add('active-nav');
     await renderProjectsList();
-  } 
+  }
   else if (path.includes('case-study')) {
     const urlParams = new URLSearchParams(window.location.search);
     const projectId = urlParams.get('id');
@@ -666,7 +666,7 @@ const PROJECTS_DATA = {
     },
     {
       "id": "offline-doc-assistant",
-      "name": "Enterprise Document Intelligence Platform",
+      "name": "Offline AI Document Assistant",
       "tagline": "Privacy-first offline AI system for enterprise document search and conversational intelligence.",
       "repo": "pranavakshit/offline-doc-assistant",
       "status": "Completed",
