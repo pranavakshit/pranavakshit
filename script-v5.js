@@ -561,7 +561,7 @@ const PROJECTS_DATA = {
       "name": "GPS Cam Portal",
       "tagline": "Enterprise platform for secure GPS-enabled media collection and offline field operations.",
       "repo": "pranavakshit/gps-cam-portal",
-      "status": "Active Development",
+      "status": "Completed",
       "technologies": ["Android", "FastAPI", "React", "MySQL", "Docker", "OCI", "Nginx"],
       "overview": "A production-grade software system designed for secure, tamper-proof geospatial media capture and synchronization. Specifically built for field researchers and operations teams working in remote environments with intermittent or non-existent cellular coverage.",
       "highlights": [
