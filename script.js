@@ -230,7 +230,10 @@ async function renderProjectsList() {
         <div class="project-details">
           <div class="project-header-row">
             <h3 class="project-title">${project.name}</h3>
-            <span class="status-badge badge-${project.status.toLowerCase().replace(/\s+/g, '-')}">${project.status}</span>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+              ${project.type ? `<span class="type-badge">${project.type}</span>` : ''}
+              <span class="status-badge badge-${project.status.toLowerCase().replace(/\s+/g, '-')}">${project.status}</span>
+            </div>
           </div>
           <p class="project-tagline">${project.tagline}</p>
           <div class="project-chips">${chipsHTML}</div>
@@ -434,7 +437,10 @@ async function renderCaseStudy(projectId) {
           <div style="border-bottom: 1px solid var(--border); padding-bottom: 2rem; margin-bottom: 3rem;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
               <h1 style="font-size: 2.5rem; font-weight: 500; margin: 0; color: var(--text);">${project.name}</h1>
-              <span style="font-size: 0.8rem; padding: 0.3rem 0.8rem; border-radius: 40px; border: 1px solid var(--border);">${project.status}</span>
+              <div style="display: flex; gap: 0.5rem; align-items: center;">
+                ${project.type ? `<span style="font-size: 0.8rem; padding: 0.3rem 0.8rem; border-radius: 4px; background: rgba(255,255,255,0.05); color: var(--text); border: 1px solid rgba(255,255,255,0.1);">${project.type}</span>` : ''}
+                <span style="font-size: 0.8rem; padding: 0.3rem 0.8rem; border-radius: 40px; border: 1px solid var(--border);">${project.status}</span>
+              </div>
             </div>
             <p style="font-size: 1.15rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.5rem;">${project.tagline}</p>
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
@@ -581,6 +587,7 @@ const PROJECTS_DATA = {
   "projects": [
     {
       "id": "gps-cam-portal",
+      "type": "Internship Project",
       "name": "GPS Cam Portal",
       "tagline": "Enterprise platform for secure GPS-enabled media collection and offline field operations.",
       "repo": "pranavakshit/gps-cam-portal",
@@ -635,6 +642,7 @@ const PROJECTS_DATA = {
     },
     {
       "id": "locai",
+      "type": "Hobby Project",
       "name": "LocAi",
       "tagline": "Native desktop platform for running local AI models and developer tools completely offline.",
       "repo": "pranavakshit/LocAi",
@@ -689,6 +697,7 @@ const PROJECTS_DATA = {
     },
     {
       "id": "offline-doc-assistant",
+      "type": "Internship Project",
       "name": "Offline AI-Powered Document Assistant",
       "tagline": "Privacy-first offline AI system for enterprise document search and conversational intelligence.",
       "repo": "pranavakshit/offline-doc-assistant",
@@ -743,6 +752,7 @@ const PROJECTS_DATA = {
     },
     {
       "id": "navix",
+      "type": "College Minor Project",
       "name": "NaviX",
       "repo": "ananyarana2312/navix",
       "tagline": "Safety-aware pedestrian navigation powered by explainable routing algorithms.",
@@ -797,6 +807,7 @@ const PROJECTS_DATA = {
     },
     {
       "id": "ssheasy",
+      "type": "Hobby Project",
       "name": "SSHEasy",
       "tagline": "Desktop application simplifying SSH setup and remote server management.",
       "repo": "pranavakshit/ssheasy",

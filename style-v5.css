@@ -330,6 +330,17 @@ footer p {
   border: 1px solid var(--border);
   white-space: nowrap;
 }
+.type-badge {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-weight: 500;
+  font-family: monospace;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--muted);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  white-space: nowrap;
+}
 .badge-active-development {
   color: #34d399;
   border-color: rgba(52, 211, 153, 0.2);
