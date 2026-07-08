@@ -341,23 +341,46 @@ async function renderCaseStudy(projectId) {
     let branch = 'main';
     if (projectId === 'locai') branch = 'alpha';
     if (projectId === 'ssheasy') branch = 'master';
+    let files = ['architecture.puml'];
+    if (projectId === 'gps-cam-portal') {
+      files = ['architecture.puml', 'web_architecture.puml', 'android_architecture.puml'];
+    }
+    
     try {
-      const pumlUrl = `https://raw.githubusercontent.com/${project.repo}/${branch}/architecture.puml`;
-      const res = await fetch(pumlUrl);
-      if (res.ok) {
-        let pumlText = await res.text();
-        // Use PlantUML Encoder
-        if (typeof plantumlEncoder !== 'undefined') {
-          const encoded = plantumlEncoder.encode(pumlText);
-          diagramSvg = `<img src="https://www.plantuml.com/plantuml/dsvg/${encoded}" alt="${project.name} Architecture Diagram" style="width: 100%; height: auto; display: block; border-radius: 4px;" />`;
-        } else {
-          diagramSvg = `<p style="color: var(--muted); text-align: center; font-style: italic;">PlantUML Encoder not loaded.</p>`;
+      for (const file of files) {
+        const pumlUrl = `https://raw.githubusercontent.com/${project.repo}/${branch}/${file}`;
+        const res = await fetch(pumlUrl);
+        if (res.ok) {
+          let pumlText = await res.text();
+          if (typeof plantumlEncoder !== 'undefined') {
+            const encoded = plantumlEncoder.encode(pumlText);
+            const imgUrl = `https://www.plantuml.com/plantuml/dsvg/${encoded}`;
+            let titleHTML = '';
+            if (files.length > 1) {
+              const friendlyName = file.replace('.puml', '').replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
+              titleHTML = `<h4 style="color: var(--text); margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 1rem;">${friendlyName}</h4>`;
+            }
+            diagramSvg += `
+              ${titleHTML}
+              <div class="diagram-container" style="margin-bottom: 1.5rem;">
+                <img src="${imgUrl}" alt="${project.name} ${file} Diagram" style="width: 100%; height: auto; display: block; border-radius: 4px;" onclick="openLightbox('${imgUrl}')" />
+                <a href="${imgUrl}" target="_blank" rel="noopener noreferrer" class="open-new-tab-btn" title="Open in new tab">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                  <span>Open in new tab</span>
+                </a>
+              </div>
+            `;
+          } else {
+            diagramSvg += `<p style="color: var(--muted); text-align: center; font-style: italic;">PlantUML Encoder not loaded.</p>`;
+          }
         }
-      } else {
+      }
+      
+      if (!diagramSvg) {
         diagramSvg = `<p style="color: var(--muted); text-align: center; font-style: italic;">Architecture diagram not found or unavailable.</p>`;
       }
     } catch (err) {
-      diagramSvg = `<p style="color: var(--muted); text-align: center; font-style: italic;">Failed to load architecture diagram.</p>`;
+      diagramSvg = `<p style="color: var(--muted); text-align: center; font-style: italic;">Failed to load architecture diagrams.</p>`;
     }
   }
   project.diagram_svg = diagramSvg;
@@ -828,3 +851,37 @@ const PROJECTS_DATA = {
     }
   ]
 };
+
+function openLightbox(url) {
+  let overlay = document.getElementById('diagram-lightbox-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'diagram-lightbox-overlay';
+    overlay.className = 'lightbox-overlay';
+    overlay.innerHTML = `
+      <div class="lightbox-close" onclick="closeLightbox()">&times;</div>
+      <img src="" id="lightbox-img" class="lightbox-content" />
+    `;
+    document.body.appendChild(overlay);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        closeLightbox();
+      }
+    });
+  }
+  document.getElementById('lightbox-img').src = url;
+  // Use timeout to allow CSS transition to play
+  setTimeout(() => {
+    overlay.classList.add('active');
+  }, 10);
+}
+
+function closeLightbox() {
+  const overlay = document.getElementById('diagram-lightbox-overlay');
+  if (overlay) {
+    overlay.classList.remove('active');
+    setTimeout(() => {
+      document.getElementById('lightbox-img').src = '';
+    }, 300); // clear img src after transition
+  }
+}

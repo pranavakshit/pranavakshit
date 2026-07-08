@@ -853,3 +853,94 @@ footer p {
   }
 }
 
+/* --- LIGHTBOX STYLES --- */
+.diagram-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.diagram-container img {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.diagram-container img:hover {
+  transform: scale(1.01);
+}
+
+.open-new-tab-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(17, 17, 17, 0.8);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s ease;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(4px);
+}
+.diagram-container:hover .open-new-tab-btn {
+  opacity: 1;
+}
+.open-new-tab-btn:hover {
+  background: rgba(30, 30, 30, 0.9);
+}
+
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.lightbox-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-content {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+  background: var(--bg-raised);
+  padding: 20px;
+}
+.lightbox-overlay.active .lightbox-content {
+  transform: scale(1);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 25px;
+  right: 40px;
+  color: white;
+  font-size: 2.5rem;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+.lightbox-close:hover {
+  color: #ccc;
+}
+
